@@ -16,9 +16,14 @@ module Resourceful
       #--
       # TODO: Move this out of here
       #++
-      def set_default_flash(type, message)
-        flash[type] ||= (params[:_flash] && params[:_flash][type]) || message
-      end
+			def set_default_flash(type, message, now=nil)
+				msg = (params[:_flash] && params[:_flash][type]) || message
+				if now || (now.nil? && type == :error)
+					flash.now[type] ||= msg
+				else
+					flash[type] ||= msg
+				end
+			end
 
       # Sets the default redirect
       # (the argument passed to +redirect_to+).
