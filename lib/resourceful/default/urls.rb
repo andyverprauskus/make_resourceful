@@ -65,7 +65,7 @@ module Resourceful
       # This returns the path for the parent object.
       # 
       def parent_path(object = parent_object)
-        instance_route(parent_class_name.underscore, object, 'path')
+				send("#{parent_class_name.underscore}_path", object)
       end
       # Same as parent_path, but with the protocol and hostname.
       def parent_url(object = parent_object)
