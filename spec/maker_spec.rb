@@ -5,24 +5,24 @@ describe Resourceful::Maker, "when extended" do
   before(:each) { mock_kontroller }
 
   it "should create an empty, inheritable callbacks hash" do
-    @kontroller.resourceful_callbacks.should == {}
+    @kontroller.read_inheritable_attribute(:resourceful_callbacks).should == {}
   end
 
   it "should create an empty, inheritable responses hash" do
-    @kontroller.resourceful_responses.should == {}
+    @kontroller.read_inheritable_attribute(:resourceful_responses).should == {}
   end
 
   it "should create an empty, inheritable parents array" do
-    @kontroller.parents.should == []
+    @kontroller.read_inheritable_attribute(:parents).should == []
   end
 
   it "should create a made_resourceful variable set to false" do
-    @kontroller.made_resourceful.should be_false
+    @kontroller.read_inheritable_attribute(:made_resourceful).should be_false
   end
 
   it "should create a made_resourceful? method on the controller that returns the variable" do
     @kontroller.should_not be_made_resourceful
-    @kontroller.made_resourceful = true
+    @kontroller.write_inheritable_attribute(:made_resourceful, true)
     @kontroller.should be_made_resourceful
   end
 end
